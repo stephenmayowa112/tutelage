@@ -6,24 +6,32 @@
     <title>Engage Education</title>
     <link rel="icon" href="images/logo 2.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body class="bg-white">
-    <header class="bg-white shadow-md">
+    <header class="bg-[#2a3a4b] shadow-md">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-gray-800">
+                <div class="text-2xl font-bold text-white">
                     <a href="#"><img src="images/logo 1.png" alt="Engage Education Logo" class="h-8"></a>
                 </div>
                 <div class="hidden md:block">
                     <ul class="flex items-center space-x-8">
-                        <li><a href="#" class="text-gray-800">Schools</a></li>
-                        <li><a href="#" class="text-gray-800">Job Parent</a></li>
-                        <li><a href="#" class="text-gray-800">Blog</a></li>
+                        <li><a href="#" class="text-white">Schools</a></li>
+                        <li><a href="#" class="text-white">Job Parent</a></li>
+                        <li><a href="#" class="text-white">Blog</a></li>
                     </ul>
                 </div>
                 <div class="md:hidden">
                     <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-gray-500" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-6 h-6 text-white" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
                     </button>
@@ -31,78 +39,78 @@
             </div>
             <div class="hidden mobile-menu">
                 <ul class="mt-4 space-y-4">
-                    <li><a href="#" class="block px-4 py-2 text-gray-800">Schools</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-800">Job Parent</a></li>
-                    <li><a href="#" class="block px-4 py-2 text-gray-800">Blog</a></li>
+                    <li><a href="#" class="block px-4 py-2 text-white">Schools</a></li>
+                    <li><a href="#" class="block px-4 py-2 text-white">Job Parent</a></li>
+                    <li><a href="#" class="block px-4 py-2 text-white">Blog</a></li>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
-        <section class="bg-cover bg-center h-screen" style="background-image: url('https://engage-education.com/wp-content/uploads/2022/09/engage-education-hero-banner.jpg');">
+        <section class="bg-[#2a3a4b]">
             <div class="container mx-auto px-6 py-32 text-center">
                 <h1 class="text-4xl font-bold text-white">Find the Perfect Tutor for Your Child</h1>
                 <p class="text-lg text-white mt-4">We connect you with qualified and experienced tutors in your area.</p>
                 <div class="mt-8">
                     <div class="flex justify-center">
                         <input type="text" class="w-full max-w-md px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your postcode or town">
-                        <button class="px-6 py-3 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 focus:outline-none">Find a Tutor</button>
+                        <button class="px-6 py-3 text-white bg-[#008080] rounded-r-md hover:bg-[#006666] focus:outline-none">Find a Tutor</button>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-20">
+        <section class="py-20 bg-gray-100">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-gray-800 text-center">Featured Jobs</h2>
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Featured Tutors</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">Primary Teacher</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Maths Tutor</h3>
                         <p class="text-gray-600 mt-2">London</p>
-                        <p class="text-gray-600 mt-2">Full-time</p>
+                        <p class="text-gray-600 mt-2">Online</p>
                         <div class="mt-4">
-                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                            <a href="#" class="text-[#008080] hover:text-[#006666]">View Profile</a>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">Secondary Teacher</h3>
+                        <h3 class="text-xl font-bold text-gray-800">English Tutor</h3>
                         <p class="text-gray-600 mt-2">Manchester</p>
-                        <p class="text-gray-600 mt-2">Part-time</p>
+                        <p class="text-gray-600 mt-2">In-person</p>
                         <div class="mt-4">
-                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                            <a href="#" class="text-[#008080] hover:text-[#006666]">View Profile</a>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">SEN Teacher</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Science Tutor</h3>
                         <p class="text-gray-600 mt-2">Birmingham</p>
-                        <p class="text-gray-600 mt-2">Full-time</p>
+                        <p class="text-gray-600 mt-2">Online</p>
                         <div class="mt-4">
-                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                            <a href="#" class="text-[#008080] hover:text-[#006666]">View Profile</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="bg-gray-100 py-20">
+        <section class="bg-white py-20">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-gray-800 text-center">Why Choose Us</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">Expert Consultants</h3>
-                        <p class="text-gray-600 mt-2">Our consultants are experts in education recruitment and will help you find the perfect role.</p>
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Expert Tutors</h3>
+                        <p class="text-gray-600 mt-2">Our tutors are highly qualified and experienced in their respective fields.</p>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">Wide Range of Jobs</h3>
-                        <p class="text-gray-600 mt-2">We have a wide range of jobs available, from primary to secondary, SEN to support staff.</p>
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Personalized Learning</h3>
+                        <p class="text-gray-600 mt-2">We offer personalized learning plans to cater to the individual needs of each student.</p>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-bold text-gray-800">International Relocation</h3>
-                        <p class="text-gray-600 mt-2">We help international teachers relocate to the UK, with support and guidance every step of the way.</p>
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Flexible Scheduling</h3>
+                        <p class="text-gray-600 mt-2">We offer flexible scheduling options to fit your busy lifestyle.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="bg-gray-800 py-8">
+    <footer class="bg-[#2a3a4b] py-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -112,12 +120,9 @@
                 <div>
                     <h3 class="text-lg font-bold text-white">Quick Links</h3>
                     <ul class="mt-2 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Jobs</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Schools</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">International</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Job Parent</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
                     </ul>
                 </div>
                 <div>
