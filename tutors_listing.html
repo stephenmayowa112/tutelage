@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutelage Services - Parent</title>
+    <title>Tutelage Services - Find a Tutor</title>
     <link rel="icon" href="images/logo 2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,34 +55,67 @@
     <main>
         <section class="bg-[#f3eefd] py-20">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Find the Perfect Tutor for Your Child</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">We connect you with qualified and experienced tutors in your area to help your child succeed.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Browse Our Tutors</h1>
+                <p class="text-lg text-gray-600 text-center mb-12">Find the perfect tutor for your child from our extensive network of qualified educators.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose a Private Tutor?</h2>
-                        <ul class="list-disc list-inside text-gray-700 space-y-3">
-                            <li>Personalized learning tailored to your child's needs.</li>
-                            <li>Targeted support for specific subjects or exams.</li>
-                            <li>Improved confidence and academic performance.</li>
-                            <li>Flexible scheduling to fit your family's routine.</li>
-                            <li>Access to expert tutors in various subjects.</li>
-                        </ul>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Filter Tutors</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+                                <select id="subject" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="">All Subjects</option>
+                                    <option value="maths">Maths</option>
+                                    <option value="english">English</option>
+                                    <option value="science">Science</option>
+                                    <option value="history">History</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
+                                <input type="text" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., London or Postcode">
+                            </div>
+                            <div>
+                                <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+                                <select id="type" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="">Any Type</option>
+                                    <option value="online">Online</option>
+                                    <option value="in-person">In-person</option>
+                                </select>
+                            </div>
+                            <button class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Apply Filters</button>
+                        </div>
                     </div>
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Tutoring Process:</h2>
-                        <ul class="list-disc list-inside text-gray-700 space-y-3">
-                            <li><strong>Consultation:</strong> Discuss your child's needs and goals.</li>
-                            <li><strong>Tutor Matching:</strong> We connect you with the best-suited tutor.</li>
-                            <li><strong>Personalized Sessions:</strong> Tailored lessons to maximize learning.</li>
-                            <li><strong>Progress Tracking:</strong> Regular feedback on your child's development.</li>
-                            <li><strong>Ongoing Support:</strong> We're here to assist you throughout the tutoring journey.</li>
-                        </ul>
+                    <div class="md:w-3/4 space-y-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                            <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Jane Doe</h3>
+                                <p class="text-gray-600">Maths & Physics Tutor</p>
+                                <p class="text-gray-600 text-sm">Experienced tutor with a passion for making complex subjects easy to understand. Available for online and in-person sessions in London.</p>
+                                <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                            <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">John Smith</h3>
+                                <p class="text-gray-600">English Literature Tutor</p>
+                                <p class="text-gray-600 text-sm">Specializing in GCSE and A-Level English. Helps students develop strong analytical and writing skills. Online sessions available.</p>
+                                <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                            <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Emily White</h3>
+                                <p class="text-gray-600">Chemistry & Biology Tutor</p>
+                                <p class="text-gray-600 text-sm">Enthusiastic science tutor with a focus on practical understanding and exam techniques. Available for in-person sessions in Manchester.</p>
+                                <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="mt-16 text-center">
-                    <a href="#" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-3 px-8 rounded-full text-lg">Find a Tutor Now</a>
                 </div>
             </div>
         </section>

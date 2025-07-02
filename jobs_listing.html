@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutelage Services - Parent</title>
+    <title>Tutelage Services - Job Listings</title>
     <link rel="icon" href="images/logo 2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,34 +55,59 @@
     <main>
         <section class="bg-[#f3eefd] py-20">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Find the Perfect Tutor for Your Child</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">We connect you with qualified and experienced tutors in your area to help your child succeed.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Browse Our Job Vacancies</h1>
+                <p class="text-lg text-gray-600 text-center mb-12">Explore a wide range of teaching and support staff opportunities across the UK.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose a Private Tutor?</h2>
-                        <ul class="list-disc list-inside text-gray-700 space-y-3">
-                            <li>Personalized learning tailored to your child's needs.</li>
-                            <li>Targeted support for specific subjects or exams.</li>
-                            <li>Improved confidence and academic performance.</li>
-                            <li>Flexible scheduling to fit your family's routine.</li>
-                            <li>Access to expert tutors in various subjects.</li>
-                        </ul>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Filter Jobs</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="role" class="block text-gray-700 text-sm font-bold mb-2">Role Type:</label>
+                                <select id="role" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="">All Roles</option>
+                                    <option value="primary">Primary Teacher</option>
+                                    <option value="secondary">Secondary Teacher</option>
+                                    <option value="sen">SEN Specialist</option>
+                                    <option value="ta">Teaching Assistant</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
+                                <input type="text" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., London or Postcode">
+                            </div>
+                            <div>
+                                <label for="contract" class="block text-gray-700 text-sm font-bold mb-2">Contract Type:</label>
+                                <select id="contract" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="">Any Type</option>
+                                    <option value="permanent">Permanent</option>
+                                    <option value="temp">Temporary</option>
+                                    <option value="supply">Supply</option>
+                                </select>
+                            </div>
+                            <button class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Apply Filters</button>
+                        </div>
                     </div>
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Tutoring Process:</h2>
-                        <ul class="list-disc list-inside text-gray-700 space-y-3">
-                            <li><strong>Consultation:</strong> Discuss your child's needs and goals.</li>
-                            <li><strong>Tutor Matching:</strong> We connect you with the best-suited tutor.</li>
-                            <li><strong>Personalized Sessions:</strong> Tailored lessons to maximize learning.</li>
-                            <li><strong>Progress Tracking:</strong> Regular feedback on your child's development.</li>
-                            <li><strong>Ongoing Support:</strong> We're here to assist you throughout the tutoring journey.</li>
-                        </ul>
+                    <div class="md:w-3/4 space-y-6">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-800">Primary Teacher - Year 3</h3>
+                            <p class="text-gray-600">Location: Bristol | Contract: Permanent | Start Date: September 2025</p>
+                            <p class="text-gray-600 text-sm mt-2">A fantastic opportunity for a passionate Year 3 teacher to join a thriving primary school in Bristol.</p>
+                            <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-800">Secondary Science Teacher</h3>
+                            <p class="text-gray-600">Location: Manchester | Contract: Temporary | Start Date: ASAP</p>
+                            <p class="text-gray-600 text-sm mt-2">Seeking an enthusiastic Science teacher for a temporary role in a supportive secondary school.</p>
+                            <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-800">SEN Teaching Assistant</h3>
+                            <p class="text-gray-600">Location: Birmingham | Contract: Full-time | Start Date: August 2025</p>
+                            <p class="text-gray-600 text-sm mt-2">Opportunity for a dedicated SEN TA to support students with special educational needs.</p>
+                            <a href="#" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="mt-16 text-center">
-                    <a href="#" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-3 px-8 rounded-full text-lg">Find a Tutor Now</a>
                 </div>
             </div>
         </section>
