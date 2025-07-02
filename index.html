@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engage Education</title>
+    <link rel="icon" href="images/logo 2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">
+                    <a href="#"><img src="images/logo 1.png" alt="Engage Education Logo" class="h-8"></a>
+                </div>
+                <div class="hidden md:block">
+                    <ul class="flex items-center space-x-8">
+                        <li><a href="#" class="text-gray-800">Schools</a></li>
+                        <li><a href="#" class="text-gray-800">Job Parent</a></li>
+                        <li><a href="#" class="text-gray-800">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="md:hidden">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden mobile-menu">
+                <ul class="mt-4 space-y-4">
+                    <li><a href="#" class="block px-4 py-2 text-gray-800">Schools</a></li>
+                    <li><a href="#" class="block px-4 py-2 text-gray-800">Job Parent</a></li>
+                    <li><a href="#" class="block px-4 py-2 text-gray-800">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="bg-cover bg-center h-screen" style="background-image: url('https://engage-education.com/wp-content/uploads/2022/09/engage-education-hero-banner.jpg');">
+            <div class="container mx-auto px-6 py-32 text-center">
+                <h1 class="text-4xl font-bold text-white">Find the Perfect Tutor for Your Child</h1>
+                <p class="text-lg text-white mt-4">We connect you with qualified and experienced tutors in your area.</p>
+                <div class="mt-8">
+                    <div class="flex justify-center">
+                        <input type="text" class="w-full max-w-md px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your postcode or town">
+                        <button class="px-6 py-3 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 focus:outline-none">Find a Tutor</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Featured Jobs</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Primary Teacher</h3>
+                        <p class="text-gray-600 mt-2">London</p>
+                        <p class="text-gray-600 mt-2">Full-time</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Secondary Teacher</h3>
+                        <p class="text-gray-600 mt-2">Manchester</p>
+                        <p class="text-gray-600 mt-2">Part-time</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">SEN Teacher</h3>
+                        <p class="text-gray-600 mt-2">Birmingham</p>
+                        <p class="text-gray-600 mt-2">Full-time</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-600">View Job</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-gray-100 py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Why Choose Us</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Expert Consultants</h3>
+                        <p class="text-gray-600 mt-2">Our consultants are experts in education recruitment and will help you find the perfect role.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">Wide Range of Jobs</h3>
+                        <p class="text-gray-600 mt-2">We have a wide range of jobs available, from primary to secondary, SEN to support staff.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800">International Relocation</h3>
+                        <p class="text-gray-600 mt-2">We help international teachers relocate to the UK, with support and guidance every step of the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold text-white">Engage Education</h3>
+                    <p class="text-gray-400 mt-2">We are a leading education recruitment agency, helping teachers and support staff find their next role in schools across the UK.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white">Quick Links</h3>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Jobs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Schools</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">International</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white">Contact Us</h3>
+                    <ul class="mt-2 space-y-2">
+                        <li class="text-gray-400">123 Main Street</li>
+                        <li class="text-gray-400">London, UK 12345</li>
+                        <li class="text-gray-400">+44 123 456 7890</li>
+                        <li class="text-gray-400">info@engage-education.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <p class="text-center text-gray-400">&copy; 2025 Engage Education. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>
