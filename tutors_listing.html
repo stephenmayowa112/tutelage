@@ -191,6 +191,34 @@
         </div>
     </footer>
     <script>
+        const filterTutors = () => {
+            const subject = document.getElementById('subject').value.toLowerCase();
+            const location = document.getElementById('location').value.toLowerCase();
+            const type = document.getElementById('type').value.toLowerCase();
+            const tutorCards = document.querySelectorAll('.md\:w-3\/4 > div');
+
+            tutorCards.forEach(card => {
+                const cardSubject = card.querySelector('p:nth-child(2)').textContent.toLowerCase();
+                const cardLocation = card.querySelector('p:nth-child(3)').textContent.toLowerCase();
+                const cardType = card.querySelector('p:nth-child(4)') ? card.querySelector('p:nth-child(4)').textContent.toLowerCase() : ''; // Assuming type is the 4th p tag if present
+
+                const subjectMatch = subject === '' || cardSubject.includes(subject);
+                const locationMatch = location === '' || cardLocation.includes(location);
+                const typeMatch = type === '' || cardType.includes(type);
+
+                if (subjectMatch && locationMatch && typeMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+
+        document.getElementById('subject').addEventListener('change', filterTutors);
+        document.getElementById('location').addEventListener('keyup', filterTutors);
+        document.getElementById('type').addEventListener('change', filterTutors);
+        document.querySelector('.md\:w-1\/4 button').addEventListener('click', filterTutors);
+
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");
 
