@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,13 +54,13 @@
         </nav>
     </header>
     <main>
-        <section class="bg-[#f3eefd] py-20">
+        <section class="bg-[#f3eefd] py-20" data-aos="fade-up">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Find Your Next Teaching Role</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">We help qualified teachers and support staff find rewarding positions in schools across the UK.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8" data-aos="fade-up">Find Your Next Teaching Role</h1>
+                <p class="text-lg text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">We help qualified teachers and support staff find rewarding positions in schools across the UK.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
+                    <div data-aos="fade-right">
                         <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Tutelage Services for Your Career?</h2>
                         <ul class="list-disc list-inside text-gray-700 space-y-3">
                             <li>Access to a wide range of teaching and support roles.</li>
@@ -69,7 +70,7 @@
                             <li>Competitive pay rates and benefits.</li>
                         </ul>
                     </div>
-                    <div>
+                    <div data-aos="fade-left">
                         <h2 class="text-3xl font-bold text-gray-800 mb-4">Types of Roles We Recruit For:</h2>
                         <ul class="list-disc list-inside text-gray-700 space-y-3">
                             <li>Primary School Teachers</li>
@@ -81,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="mt-16 text-center">
+                <div class="mt-16 text-center" data-aos="fade-up">
                     <a href="#" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-3 px-8 rounded-full text-lg">Browse All Jobs</a>
                 </div>
             </div>
@@ -148,6 +149,10 @@
                 navbar.style.backgroundColor = `rgba(51, 10, 89, ${opacity})`; 
             }
         });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
