@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,13 +54,13 @@
         </nav>
     </header>
     <main>
-        <section class="bg-[#f3eefd] py-20">
+        <section class="bg-[#f3eefd] py-20" data-aos="fade-up">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Browse Our Tutors</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">Find the perfect tutor for your child from our extensive network of qualified educators.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8" data-aos="fade-up">Browse Our Tutors</h1>
+                <p class="text-lg text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">Find the perfect tutor for your child from our extensive network of qualified educators.</p>
                 
                 <div class="flex flex-col md:flex-row gap-8">
-                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6">
+                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6" data-aos="fade-right">
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Filter Tutors</h2>
                         <div class="space-y-4">
                             <div>
@@ -88,7 +89,7 @@
                         </div>
                     </div>
                     <div class="md:w-3/4 space-y-6">
-                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4" data-aos="fade-left" data-aos-delay="100">
                             <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
                             <div>
                                 <h3 class="text-xl font-bold text-gray-800">Jane Doe</h3>
@@ -97,7 +98,7 @@
                                 <a href="tutor_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4" data-aos="fade-left" data-aos-delay="200">
                             <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
                             <div>
                                 <h3 class="text-xl font-bold text-gray-800">John Smith</h3>
@@ -106,7 +107,7 @@
                                 <a href="tutor_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4" data-aos="fade-left" data-aos-delay="300">
                             <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
                             <div>
                                 <h3 class="text-xl font-bold text-gray-800">Emily White</h3>
@@ -115,7 +116,7 @@
                                 <a href="tutor_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4" data-aos="fade-left" data-aos-delay="400">
                             <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
                             <div>
                                 <h3 class="text-xl font-bold text-gray-800">David Brown</h3>
@@ -124,7 +125,7 @@
                                 <a href="tutor_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Profile</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4">
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center space-x-4" data-aos="fade-left" data-aos-delay="500">
                             <img src="https://via.placeholder.com/100" alt="Tutor Profile" class="rounded-full w-24 h-24 object-cover">
                             <div>
                                 <h3 class="text-xl font-bold text-gray-800">Sarah Green</h3>
@@ -235,5 +236,10 @@
             }
         });
     </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
 </body>
 </html>

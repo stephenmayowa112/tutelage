@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,13 +54,13 @@
         </nav>
     </header>
     <main>
-        <section class="bg-[#f3eefd] py-20">
+        <section class="bg-[#f3eefd] py-20" data-aos="fade-up">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Browse Our Job Vacancies</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">Explore a wide range of teaching and support staff opportunities across the UK.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8" data-aos="fade-up">Browse Our Job Vacancies</h1>
+                <p class="text-lg text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">Explore a wide range of teaching and support staff opportunities across the UK.</p>
                 
                 <div class="flex flex-col md:flex-row gap-8">
-                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6">
+                    <div class="md:w-1/4 bg-white rounded-lg shadow-md p-6" data-aos="fade-right">
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Filter Jobs</h2>
                         <div class="space-y-4">
                             <div>
@@ -89,31 +90,31 @@
                         </div>
                     </div>
                     <div class="md:w-3/4 space-y-6">
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="100">
                             <h3 class="text-xl font-bold text-gray-800">Primary Teacher - Year 3</h3>
                             <p class="text-gray-600">Location: Bristol | Contract: Permanent | Start Date: September 2025</p>
                             <p class="text-gray-600 text-sm mt-2">A fantastic opportunity for a passionate Year 3 teacher to join a thriving primary school in Bristol.</p>
                             <a href="job_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="200">
                             <h3 class="text-xl font-bold text-gray-800">Secondary Science Teacher</h3>
                             <p class="text-gray-600">Location: Manchester | Contract: Temporary | Start Date: ASAP</p>
                             <p class="text-gray-600 text-sm mt-2">Seeking an enthusiastic Science teacher for a temporary role in a supportive secondary school.</p>
                             <a href="job_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="300">
                             <h3 class="text-xl font-bold text-gray-800">SEN Teaching Assistant</h3>
                             <p class="text-gray-600">Location: Birmingham | Contract: Full-time | Start Date: August 2025</p>
                             <p class="text-gray-600 text-sm mt-2">Opportunity for a dedicated SEN TA to support students with special educational needs.</p>
                             <a href="job_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="400">
                             <h3 class="text-xl font-bold text-gray-800">Head of English</h3>
                             <p class="text-gray-600">Location: London | Contract: Permanent | Start Date: January 2026</p>
                             <p class="text-gray-600 text-sm mt-2">An exciting leadership opportunity for an experienced English teacher to lead a dynamic department.</p>
                             <a href="job_detail.html" class="text-[#8A2BE1] hover:text-[#5d1a9a] mt-2 inline-block">View Job Details</a>
                         </div>
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="500">
                             <h3 class="text-xl font-bold text-gray-800">Early Years Practitioner</h3>
                             <p class="text-gray-600">Location: Leeds | Contract: Full-time | Start Date: October 2025</p>
                             <p class="text-gray-600 text-sm mt-2">Seeking a passionate Early Years Practitioner to join a vibrant nursery setting.</p>
@@ -219,6 +220,10 @@
                 navbar.style.backgroundColor = `rgba(51, 10, 89, ${opacity})`; 
             }
         });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,10 +54,10 @@
         </nav>
     </header>
     <main>
-        <section class="bg-[#f3eefd] py-20">
+        <section class="bg-[#f3eefd] py-20" data-aos="fade-up">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Terms & Conditions</h1>
-                <p class="text-lg text-gray-600 text-center mb-12">Please read these terms and conditions carefully before using our services.</p>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8" data-aos="fade-up">Terms & Conditions</h1>
+                <p class="text-lg text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">Please read these terms and conditions carefully before using our services.</p>
                 
                 <div class="space-y-8 text-gray-700">
                     <p>Welcome to Tutelage Services. These terms and conditions outline the rules and regulations for the use of Tutelage Services' Website, located at tutelageservices.co.uk.</p>
@@ -160,6 +161,10 @@
                 navbar.style.backgroundColor = `rgba(51, 10, 89, ${opacity})`; 
             }
         });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>

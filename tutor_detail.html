@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,11 +54,11 @@
         </nav>
     </header>
     <main>
-        <section class="bg-[#f3eefd] py-20">
+        <section class="bg-[#f3eefd] py-20" data-aos="fade-up">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Tutor Profile: Jane Doe</h1>
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-8" data-aos="fade-up">Tutor Profile: Jane Doe</h1>
                 
-                <div class="bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                <div class="bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8" data-aos="zoom-in">
                     <img src="https://via.placeholder.com/200" alt="Tutor Profile Picture" class="rounded-full w-48 h-48 object-cover border-4 border-[#8A2BE1]">
                     
                     <div class="text-center md:text-left">
@@ -154,6 +155,10 @@
                 navbar.style.backgroundColor = `rgba(51, 10, 89, ${opacity})`; 
             }
         });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
