@@ -12,10 +12,23 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gradient-to-br from-purple-50 to-indigo-100">
     <header class="bg-[#330a59] shadow-md">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
