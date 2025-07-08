@@ -17,6 +17,9 @@
         h1, h2 {
             font-family: 'Playfair Display', serif;
         }
+        .map-iframe {
+            border: 0;
+        }
     </style>
 </head>
 <body class="bg-white pt-16">
@@ -41,7 +44,7 @@
                     <a href="signup.html" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-2 px-4 rounded-full transition-all hover:scale-105">Sign Up</a>
                 </div>
                 <div class="md:hidden">
-                    <button class="outline-none mobile-menu-button">
+                    <button class="outline-none mobile-menu-button" aria-label="Toggle navigation menu">
                         <svg class="w-6 h-6 text-white" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -86,7 +89,8 @@
                                     width="100%"
                                     height="100%"
                                     frameborder="0"
-                                    style="border:0"
+                                    class="map-iframe"
+                                    title="Location map showing 850 Cleckheaton Road Oakenshaw, Bradford. BD12 7AA"
                                     src="https://maps.google.com/maps?q=850%20Cleckheaton%20Road%20Oakenshaw%2C%20Bradford.%20BD12%207AA&t=&z=15&ie=UTF8&iwloc=&output=embed"
                                     allowfullscreen>
                                 </iframe>
