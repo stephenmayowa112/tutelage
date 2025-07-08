@@ -41,8 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Redirect based on role
         if (profile.role === 'admin') {
             window.location.href = 'admin_dashboard.html';
+        } else if (profile.role === 'parent') {
+            window.location.href = 'parent_dashboard.html';
+        } else if (profile.role === 'tutor') {
+            window.location.href = 'tutor_dashboard.html';
+        } else if (profile.role === 'school') {
+            window.location.href = 'school_dashboard.html';
         } else {
-            // Redirect non-admins to the homepage or another dashboard
+            // Fallback for undefined roles
             window.location.href = 'index.html';
         }
     });

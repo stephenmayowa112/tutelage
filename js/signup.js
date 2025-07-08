@@ -59,7 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // On success
+        // Redirect based on role
+        if (role === 'admin') {
+            window.location.href = 'admin_dashboard.html';
+        } else if (role === 'parent') {
+            window.location.href = 'parent_dashboard.html';
+        } else if (role === 'tutor') {
+            window.location.href = 'tutor_dashboard.html';
+        } else if (role === 'school') {
+            window.location.href = 'school_dashboard.html';
+        } else {
+            // Fallback for undefined roles
+            window.location.href = 'index.html';
+        }
         message.textContent = 'Success! Please check your email to confirm your account.';
         message.classList.add('text-green-500');
         signupForm.reset();
