@@ -1,1 +1,1 @@
-something is wrong with the way this project is showing on the live view, the herosection of tyhe website is showing on the live version of this website on my local machine but the hosted version is not showing all this, why is that 
+the problem persist, not just for the homepage but for even all the pages,it is as though it is only showing the navbar and footer across all pages in the website, please take a careful look at all the files in this project the local view ofthe website is still showing  the website properly just the hosted version that is my worry

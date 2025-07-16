@@ -6,12 +6,30 @@
       "use": "@vercel/static"
     },
     {
-      "src": "/js/*.js",
+      "src": "js/**",
       "use": "@vercel/static"
     },
     {
-      "src": "/images/*",
+      "src": "css/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "images/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "fonts/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.{jpg,jpeg,png,gif,svg,webp,ico,css,js}",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
