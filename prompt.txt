@@ -1,0 +1,1 @@
+something is wrong with the way this project is showing on the live view, the herosection of tyhe website is showing on the live version of this website on my local machine but the hosted version is not showing all this, why is that 
