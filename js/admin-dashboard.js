@@ -63,14 +63,51 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!users || users.length === 0) {
                 userList.innerHTML = '<p class="text-gray-500">No users found.</p>';
             } else {
-                const userHtml = users.map(user => `
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-2 border-b">
+                const userHtml = users.map((user, idx) => `
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-2 border-b items-center" data-user-idx="${idx}">
                         <div>${user.first_name || ''} ${user.last_name || ''}</div>
                         <div>${user.email || ''}</div>
-                        <div>${user.role || ''}</div>
+                        <div>
+                            <select class="role-select bg-gray-100 border rounded px-2 py-1" data-user-idx="${idx}">
+                                <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                                <option value="parent" ${user.role === 'parent' ? 'selected' : ''}>Parent</option>
+                                <option value="tutor" ${user.role === 'tutor' ? 'selected' : ''}>Tutor</option>
+                                <option value="school" ${user.role === 'school' ? 'selected' : ''}>School</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="edit-btn bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
+                            <button class="delete-btn bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
+                        </div>
                     </div>
                 `).join('');
                 userList.innerHTML = userHtml;
+
+                // Add event listeners for edit, delete, and role change
+                users.forEach((user, idx) => {
+                    // Edit button
+                    userList.querySelector(`.edit-btn[data-user-idx='${idx}']`).addEventListener('click', () => {
+                        const newFirstName = prompt('Edit First Name:', user.first_name || '');
+                        const newLastName = prompt('Edit Last Name:', user.last_name || '');
+                        const newEmail = prompt('Edit Email:', user.email || '');
+                        if (newFirstName !== null && newLastName !== null && newEmail !== null) {
+                            supabase.from('profiles').update({ first_name: newFirstName, last_name: newLastName, email: newEmail }).eq('email', user.email).then(() => location.reload());
+                        }
+                    });
+
+                    // Delete button
+                    userList.querySelector(`.delete-btn[data-user-idx='${idx}']`).addEventListener('click', () => {
+                        if (confirm(`Are you sure you want to delete user ${user.email}?`)) {
+                            supabase.from('profiles').delete().eq('email', user.email).then(() => location.reload());
+                        }
+                    });
+
+                    // Role select
+                    userList.querySelector(`.role-select[data-user-idx='${idx}']`).addEventListener('change', (e) => {
+                        const newRole = e.target.value;
+                        supabase.from('profiles').update({ role: newRole }).eq('email', user.email).then(() => location.reload());
+                    });
+                });
             }
         }
     } catch (err) {
