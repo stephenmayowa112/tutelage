@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="md:hidden">
-                    <button class="outline-none mobile-menu-button">
+                    <button class="outline-none mobile-menu-button" aria-label="Toggle mobile menu" title="Toggle mobile menu">
                         <svg class="w-6 h-6 text-white" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -108,19 +108,13 @@
                         <li><a href="parent.html" class="text-gray-400 hover:text-white">Parent</a></li>
                         <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
                         <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-                                            <li><a href="contact.html" class="block px-4 py-2 text-white hover:text-[#bf9df6]">Contact Us</a></li>
-                    <li class="mt-4">
-                        <a href="login.html" class="block w-full text-center py-2 px-4 text-white bg-[#8A2BE1] rounded-full hover:bg-[#5d1a9a]">Login</a>
-                    </li>
-                    <li>
-                        <a href="signup.html" class="block w-full text-center py-2 px-4 text-white bg-transparent border border-white rounded-full hover:bg-white hover:text-[#330a59]">Sign Up</a>
-                    </li>
-                    </ul>
-                </div>
-                <div class="hidden md:block">
-                    <a href="login.html" class="text-white hover:text-[#bf9df6] mr-4">Login</a>
-                    <a href="signup.html" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-2 px-4 rounded-full transition-all hover:scale-105">Sign Up</a>
-                </div>
+                        <li><a href="contact.html" class="block px-4 py-2 text-white hover:text-[#bf9df6]">Contact Us</a></li>
+                        <li class="mt-4">
+                            <a href="login.html" class="block w-full text-center py-2 px-4 text-white bg-[#8A2BE1] rounded-full hover:bg-[#5d1a9a]">Login</a>
+                        </li>
+                        <li>
+                            <a href="signup.html" class="block w-full text-center py-2 px-4 text-white bg-transparent border border-white rounded-full hover:bg-white hover:text-[#330a59]">Sign Up</a>
+                        </li>
                         <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
                         <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
                         <li><a href="compliance.html" class="text-gray-400 hover:text-white">Compliance</a></li>
@@ -128,22 +122,18 @@
                         <li><a href="terms_conditions.html" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="md:block">
+                    <div class="hidden md:block mb-4">
+                        <a href="login.html" class="text-white hover:text-[#bf9df6] mr-4">Login</a>
+                        <a href="signup.html" class="bg-[#8A2BE1] hover:bg-[#5d1a9a] text-white font-bold py-2 px-4 rounded-full transition-all hover:scale-105">Sign Up</a>
+                    </div>
                     <h3 class="text-lg font-bold text-white">Follow Us</h3>
                     <ul class="mt-2 space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">LinkedIn</a></li>
                     </ul>
-                <div>
-                    <h3 class="text-lg font-bold text-white">Follow Us</h3>
-                    <ul class="mt-2 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">LinkedIn</a></li>
-                    </ul>
-                <div>
-                    <h3 class="text-lg font-bold text-white">Contact Us</h3>
+                    <h3 class="text-lg font-bold text-white mt-4">Contact Us</h3>
                     <ul class="mt-2 space-y-2">
                         <li class="text-gray-400">850 Cleckheaton Road Oakenshaw, Bradford. BD12 7AA</li>
                         <li class="text-gray-400">+442036756199, +447503567466, +2348062798151</li>
