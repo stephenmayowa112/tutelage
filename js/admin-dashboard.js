@@ -1,5 +1,6 @@
 
 import { supabase } from './supabase-init.js';
+import { logAdminAction } from './admin-audit-log.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const userList = document.getElementById('user-list');
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 userList.innerHTML = '<p class="text-gray-500">No users found.</p>';
             } else {
                 const userHtml = users.map((user, idx) => `
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-2 border-b items-center" data-user-idx="${idx}">
+                    <div class="grid grid-cols-1 md:grid-cols-6 gap-4 py-2 border-b items-center" data-user-idx="${idx}">
                         <div>${user.first_name || ''} ${user.last_name || ''}</div>
                         <div>${user.email || ''}</div>
                         <div>
@@ -78,7 +79,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="flex gap-2">
                             <button class="edit-btn bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
                             <button class="delete-btn bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
+                            <button class="reset-btn bg-yellow-500 hover:bg-yellow-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">Reset Password</button>
+                            <button class="suspend-btn bg-gray-500 hover:bg-gray-700 text-white px-2 py-1 rounded" data-user-idx="${idx}">${user.suspended ? 'Activate' : 'Suspend'}</button>
                         </div>
+                        <div>${user.suspended ? '<span class="text-red-600">Suspended</span>' : '<span class="text-green-600">Active</span>'}</div>
                     </div>
                 `).join('');
                 userList.innerHTML = userHtml;
@@ -91,21 +95,48 @@ document.addEventListener('DOMContentLoaded', async () => {
                         const newLastName = prompt('Edit Last Name:', user.last_name || '');
                         const newEmail = prompt('Edit Email:', user.email || '');
                         if (newFirstName !== null && newLastName !== null && newEmail !== null) {
-                            supabase.from('profiles').update({ first_name: newFirstName, last_name: newLastName, email: newEmail }).eq('email', user.email).then(() => location.reload());
+                            supabase.from('profiles').update({ first_name: newFirstName, last_name: newLastName, email: newEmail }).eq('email', user.email).then(() => {
+                                logAdminAction(supabase, session.user.id, 'Edit User', `Edited user ${user.email}`);
+                                location.reload();
+                            });
                         }
                     });
 
                     // Delete button
                     userList.querySelector(`.delete-btn[data-user-idx='${idx}']`).addEventListener('click', () => {
                         if (confirm(`Are you sure you want to delete user ${user.email}?`)) {
-                            supabase.from('profiles').delete().eq('email', user.email).then(() => location.reload());
+                            supabase.from('profiles').delete().eq('email', user.email).then(() => {
+                                logAdminAction(supabase, session.user.id, 'Delete User', `Deleted user ${user.email}`);
+                                location.reload();
+                            });
                         }
                     });
 
                     // Role select
                     userList.querySelector(`.role-select[data-user-idx='${idx}']`).addEventListener('change', (e) => {
                         const newRole = e.target.value;
-                        supabase.from('profiles').update({ role: newRole }).eq('email', user.email).then(() => location.reload());
+                        supabase.from('profiles').update({ role: newRole }).eq('email', user.email).then(() => {
+                            logAdminAction(supabase, session.user.id, 'Change Role', `Changed role for ${user.email} to ${newRole}`);
+                            location.reload();
+                        });
+                    });
+
+                    // Reset password button
+                    userList.querySelector(`.reset-btn[data-user-idx='${idx}']`).addEventListener('click', async () => {
+                        const newPassword = prompt('Enter new password for user:', '');
+                        if (newPassword) {
+                            // Supabase does not allow direct password reset by admin, so you may need to trigger a password reset email or use an edge function
+                            alert('Password reset functionality requires Supabase admin API or edge function.');
+                            logAdminAction(supabase, session.user.id, 'Reset Password', `Attempted password reset for ${user.email}`);
+                        }
+                    });
+
+                    // Suspend/activate button
+                    userList.querySelector(`.suspend-btn[data-user-idx='${idx}']`).addEventListener('click', async () => {
+                        const newStatus = !user.suspended;
+                        await supabase.from('profiles').update({ suspended: newStatus }).eq('email', user.email);
+                        logAdminAction(supabase, session.user.id, newStatus ? 'Suspend User' : 'Activate User', `${newStatus ? 'Suspended' : 'Activated'} user ${user.email}`);
+                        location.reload();
                     });
                 });
             }
