@@ -1,17 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/js/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/images/*",
-      "use": "@vercel/static"
-    }
+  "rewrites": [
+    { "source": "/js/(.*)", "destination": "/js/$1" },
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }

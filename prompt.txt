@@ -1,8 +1,8 @@
 1. this is what the console is showing 
-(index):64 cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation
-(anonymous) @ (index):64
-/js/supabase-init.js:1  Failed to load resource: the server responded with a status of 404 ()
-/js/script.js:1  Failed to load resource: the server responded with a status of 404 ()
+supabase-init.js:1  Failed to load resource: the server responded with a status of 404 ()
+script.js:1  Failed to load resource: the server responded with a status of 404 ()
+hook.js:608 cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation
+overrideMethod @ hook.js:608
 tab.js:1 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' chrome-extension://ccb70e7c-c8f4-4b83-8c29-a03f67e84084/". Either the 'unsafe-inline' keyword, a hash ('sha256-kPx0AsF0oz2kKiZ875xSvv693TBHkQ/0SkMJZnnNpnQ='), or a nonce ('nonce-...') is required to enable inline execution.
 
 (anonymous) @ tab.js:1
@@ -11,5 +11,8 @@ xe @ jquery-3.4.1.min.js:2
 page.js:1 Uncaught (in promise) h: Talisman extension has not been configured yet. Please continue with onboarding.
     at Object.handleResponse (chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld/page.js:1:68740)
     at chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld/page.js:1:69017
+index.html:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
 
-2. on inspecting the html content I can see the code to all the content that should be there, could it be an opacity issue, the browser cosole is saying that an opacity styling is over whelming it 
+
+
+2. I also think the opacity issue might not be correct

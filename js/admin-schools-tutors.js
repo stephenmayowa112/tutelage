@@ -3,6 +3,39 @@ import { logAdminAction } from './admin-audit-log.js';
 
 const schoolList = document.getElementById('school-management-list');
 const tutorList = document.getElementById('tutor-management-list');
+const createSchoolBtn = document.getElementById('create-school-btn');
+const createTutorBtn = document.getElementById('create-tutor-btn');
+const createSchoolForm = document.getElementById('create-school-form');
+const createTutorForm = document.getElementById('create-tutor-form');
+const schoolForm = document.getElementById('school-form');
+const tutorForm = document.getElementById('tutor-form');
+
+createSchoolBtn.addEventListener('click', () => {
+    createSchoolForm.classList.toggle('hidden');
+});
+createTutorBtn.addEventListener('click', () => {
+    createTutorForm.classList.toggle('hidden');
+});
+
+schoolForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const school_name = document.getElementById('school-name').value;
+    const address = document.getElementById('school-address').value;
+    const contact_email = document.getElementById('school-email').value;
+    await supabase.from('schools').insert({ school_name, address, contact_email });
+    logAdminAction(supabase, supabase.auth.user().id, 'Create School', `Created school ${school_name}`);
+    location.reload();
+});
+
+tutorForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const bio = document.getElementById('tutor-bio').value;
+    const subjects = document.getElementById('tutor-subjects').value.split(',').map(s => s.trim());
+    const experience_years = parseInt(document.getElementById('tutor-experience').value);
+    await supabase.from('tutors').insert({ bio, subjects, experience_years });
+    logAdminAction(supabase, supabase.auth.user().id, 'Create Tutor', `Created tutor with bio: ${bio}`);
+    location.reload();
+});
 
 async function fetchSchools() {
     const { data, error } = await supabase
