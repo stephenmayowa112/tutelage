@@ -1,6 +1,3 @@
-we would need to  Configure CORS directly in the Edge Function, use the code below for the Configuration
-
-
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
