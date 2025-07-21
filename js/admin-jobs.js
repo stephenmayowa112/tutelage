@@ -17,26 +17,52 @@ async function fetchJobs() {
         .order('created_at', { ascending: false });
 
     if (error) {
-        jobList.innerHTML = '<p class="text-red-600">Failed to load jobs.</p>';
+        jobList.innerHTML = '<div class="text-center py-10"><p class="text-red-600">Failed to load jobs.</p></div>';
         return;
     }
 
     if (!data || data.length === 0) {
-        jobList.innerHTML = '<p class="text-gray-500">No job listings found.</p>';
+        jobList.innerHTML = '<div class="text-center py-10"><p class="text-gray-500">No job listings found.</p></div>';
         return;
     }
 
     jobList.innerHTML = data.map(job => `
-        <div class="border-b py-2">
-            <div><span class="font-bold">Title:</span> ${job.title}</div>
-            <div><span class="font-bold">Location:</span> ${job.location}</div>
-            <div><span class="font-bold">Contract:</span> ${job.contract_type || ''}</div>
-            <div><span class="font-bold">Description:</span> ${job.description}</div>
-            <div><span class="font-bold">Status:</span> ${job.approved ? '<span class="text-green-600">Approved</span>' : '<span class="text-yellow-600">Pending</span>'}</div>
-            <div class="flex gap-2 mt-2">
-                <button class="approve-btn bg-green-500 hover:bg-green-700 text-white px-2 py-1 rounded" data-job-id="${job.id}">${job.approved ? 'Unapprove' : 'Approve'}</button>
-                <button class="edit-btn bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded" data-job-id="${job.id}">Edit</button>
-                <button class="delete-btn bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded" data-job-id="${job.id}">Delete</button>
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-4 py-4 px-6 border-b items-center">
+            <div class="md:hidden">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="font-semibold text-gray-800 mb-2">${job.title}</div>
+                    <div class="text-sm text-gray-600 mb-1"><span class="font-medium">Location:</span> ${job.location}</div>
+                    <div class="text-sm text-gray-600 mb-1"><span class="font-medium">Contract:</span> ${job.contract_type || 'N/A'}</div>
+                    <div class="text-sm text-gray-600 mb-1"><span class="font-medium">Posted:</span> ${new Date(job.created_at).toLocaleDateString()}</div>
+                    <div class="mb-3">
+                        <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${job.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+                            ${job.approved ? 'Approved' : 'Pending'}
+                        </span>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <button class="approve-btn ${job.approved ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'} text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">
+                            ${job.approved ? 'Unapprove' : 'Approve'}
+                        </button>
+                        <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">Edit</button>
+                        <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden md:block font-medium text-gray-800 truncate">${job.title}</div>
+            <div class="hidden md:block text-sm text-gray-600 truncate">${job.location}</div>
+            <div class="hidden md:block text-sm text-gray-600">${job.contract_type || 'N/A'}</div>
+            <div class="hidden md:block text-xs text-gray-500">${new Date(job.created_at).toLocaleDateString()}</div>
+            <div class="hidden md:block">
+                <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${job.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+                    ${job.approved ? 'Approved' : 'Pending'}
+                </span>
+            </div>
+            <div class="hidden md:flex gap-2 flex-wrap">
+                <button class="approve-btn ${job.approved ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'} text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">
+                    ${job.approved ? 'Unapprove' : 'Approve'}
+                </button>
+                <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">Edit</button>
+                <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded transition-all" data-job-id="${job.id}">Delete</button>
             </div>
         </div>
     `).join('');
@@ -75,11 +101,25 @@ jobForm.addEventListener('submit', async (e) => {
     const location = document.getElementById('job-location').value;
     const contract_type = document.getElementById('job-contract').value;
     const description = document.getElementById('job-description').value;
-    await supabase.from('jobs').insert({ title, location, contract_type, description, approved: false });
-    logAdminAction(supabase, supabase.auth.user().id, 'Create Job', `Created job ${title}`);
-    fetchJobs();
-    jobForm.reset();
-    createJobForm.classList.add('hidden');
+    const salary = document.getElementById('job-salary').value;
+    
+    try {
+        await supabase.from('jobs').insert({ 
+            title, 
+            location, 
+            contract_type, 
+            description, 
+            salary_range: salary,
+            approved: false 
+        });
+        logAdminAction(supabase, supabase.auth.user().id, 'Create Job', `Created job ${title}`);
+        fetchJobs();
+        jobForm.reset();
+        createJobForm.classList.add('hidden');
+    } catch (error) {
+        console.error('Error creating job:', error);
+        alert('Failed to create job. Please try again.');
+    }
 });
 
 fetchJobs();
