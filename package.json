@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx postcss ./css/input.css -o ./css/style.css"
+    "test": "echo \"Error: no test specified\" && exit 1",    "build:css": "npx postcss ./css/input.css -o ./css/style.css",    "build": "npm run build:css"
   },
   "repository": {
     "type": "git",
