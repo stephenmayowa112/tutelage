@@ -69,30 +69,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 userList.innerHTML = '<div class="text-center py-10"><p class="text-gray-500">No users found.</p></div>';
             } else {
                 const userHtml = users.map((user, idx) => `
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 px-4 border-b items-center" data-user-idx="${idx}">
-                        <div class="md:hidden">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="font-semibold text-gray-800 mb-2">${user.first_name || ''} ${user.last_name || ''}</div>
-                                <div class="text-sm text-gray-600 mb-1"><span class="font-medium">Email:</span> ${user.email || ''}</div>
-                                <div class="text-sm text-gray-600 mb-2"><span class="font-medium">Role:</span> ${user.role || 'N/A'}</div>
-                                <div class="space-y-2">
-                                    <select class="role-select w-full bg-gray-100 border rounded px-2 py-1 text-sm" data-user-idx="${idx}">
-                                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
-                                        <option value="parent" ${user.role === 'parent' ? 'selected' : ''}>Parent</option>
-                                        <option value="tutor" ${user.role === 'tutor' ? 'selected' : ''}>Tutor</option>
-                                        <option value="school" ${user.role === 'school' ? 'selected' : ''}>School</option>
-                                    </select>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
-                                        <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
-                                        <button class="reset-btn bg-yellow-500 hover:bg-yellow-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden md:block font-medium">${user.first_name || ''} ${user.last_name || ''}</div>
-                        <div class="hidden md:block text-sm text-gray-600 truncate">${user.email || ''}</div>
-                        <div class="hidden md:block">
+                    <div class="grid grid-cols-4 gap-4 py-4 px-4 border-b items-center" data-user-idx="${idx}">
+                        <div class="font-medium">${user.first_name || ''} ${user.last_name || ''}</div>
+                        <div class="text-sm text-gray-600 truncate">${user.email || ''}</div>
+                        <div>
                             <select class="role-select bg-gray-100 border rounded px-2 py-1 text-sm" data-user-idx="${idx}">
                                 <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
                                 <option value="parent" ${user.role === 'parent' ? 'selected' : ''}>Parent</option>
@@ -100,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <option value="school" ${user.role === 'school' ? 'selected' : ''}>School</option>
                             </select>
                         </div>
-                        <div class="hidden md:flex gap-1 flex-wrap">
+                        <div class="flex gap-1 flex-wrap">
                             <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
                             <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
                             <button class="reset-btn bg-yellow-500 hover:bg-yellow-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Reset</button>
@@ -111,10 +91,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Add event listeners for edit, delete, and role change
                 users.forEach((user, idx) => {
-                    // Edit buttons (both mobile and desktop)
-                    const editBtns = userList.querySelectorAll(`.edit-btn[data-user-idx='${idx}']`);
-                    editBtns.forEach(btn => {
-                        btn.addEventListener('click', () => {
+                    // Edit button
+                    const editBtn = userList.querySelector(`.edit-btn[data-user-idx='${idx}']`);
+                    if (editBtn) {
+                        editBtn.addEventListener('click', () => {
                             const newFirstName = prompt('Edit First Name:', user.first_name || '');
                             const newLastName = prompt('Edit Last Name:', user.last_name || '');
                             const newEmail = prompt('Edit Email:', user.email || '');
@@ -125,12 +105,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 });
                             }
                         });
-                    });
+                    }
 
-                    // Delete buttons (both mobile and desktop)
-                    const deleteBtns = userList.querySelectorAll(`.delete-btn[data-user-idx='${idx}']`);
-                    deleteBtns.forEach(btn => {
-                        btn.addEventListener('click', () => {
+                    // Delete button
+                    const deleteBtn = userList.querySelector(`.delete-btn[data-user-idx='${idx}']`);
+                    if (deleteBtn) {
+                        deleteBtn.addEventListener('click', () => {
                             if (confirm(`Are you sure you want to delete user ${user.email}?`)) {
                                 supabase.from('profiles').delete().eq('email', user.email).then(() => {
                                     logAdminAction(supabase, session.user.id, 'Delete User', `Deleted user ${user.email}`);
@@ -138,32 +118,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 });
                             }
                         });
-                    });
+                    }
 
-                    // Role selects (both mobile and desktop)
-                    const roleSelects = userList.querySelectorAll(`.role-select[data-user-idx='${idx}']`);
-                    roleSelects.forEach(select => {
-                        select.addEventListener('change', (e) => {
+                    // Role select
+                    const roleSelect = userList.querySelector(`.role-select[data-user-idx='${idx}']`);
+                    if (roleSelect) {
+                        roleSelect.addEventListener('change', (e) => {
                             const newRole = e.target.value;
                             supabase.from('profiles').update({ role: newRole }).eq('email', user.email).then(() => {
                                 logAdminAction(supabase, session.user.id, 'Change Role', `Changed role for ${user.email} to ${newRole}`);
                                 location.reload();
                             });
                         });
-                    });
+                    }
 
-                    // Reset password buttons (both mobile and desktop)
-                    const resetBtns = userList.querySelectorAll(`.reset-btn[data-user-idx='${idx}']`);
-                    resetBtns.forEach(btn => {
-                        btn.addEventListener('click', async () => {
+                    // Reset password button
+                    const resetBtn = userList.querySelector(`.reset-btn[data-user-idx='${idx}']`);
+                    if (resetBtn) {
+                        resetBtn.addEventListener('click', async () => {
                             const newPassword = prompt('Enter new password for user:', '');
                             if (newPassword) {
-                                // Supabase does not allow direct password reset by admin, so you may need to trigger a password reset email or use an edge function
                                 alert('Password reset functionality requires Supabase admin API or edge function.');
                                 logAdminAction(supabase, session.user.id, 'Reset Password', `Attempted password reset for ${user.email}`);
                             }
                         });
-                    });
+                    }
                 });
             }
         }
