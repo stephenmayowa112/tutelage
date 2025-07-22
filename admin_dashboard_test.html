@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Test - Tutelage Services</title>
+    <link rel="icon" href="images/logo 2.png">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .test-section {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .loading { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard Diagnostic Test</h1>
+    
+    <div class="test-section">
+        <h2>1. Supabase Connection Test</h2>
+        <div id="connection-test" class="loading">Testing connection...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Authentication Test</h2>
+        <div id="auth-test" class="loading">Checking authentication...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Profiles Table Test</h2>
+        <div id="profiles-test" class="loading">Testing profiles table...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. Admin Check Test</h2>
+        <div id="admin-test" class="loading">Checking admin permissions...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>5. User Data Fetch Test</h2>
+        <div id="fetch-test" class="loading">Fetching user data...</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { supabase } from './js/supabase-init.js';
+        
+        async function runTests() {
+            // Test 1: Supabase Connection
+            try {
+                const connectionDiv = document.getElementById('connection-test');
+                if (supabase) {
+                    connectionDiv.innerHTML = '<span class="success">✓ Supabase client initialized successfully</span>';
+                } else {
+                    connectionDiv.innerHTML = '<span class="error">✗ Supabase client initialization failed</span>';
+                    return;
+                }
+            } catch (err) {
+                document.getElementById('connection-test').innerHTML = `<span class="error">✗ Connection error: ${err.message}</span>`;
+                return;
+            }
+            
+            // Test 2: Authentication
+            try {
+                const authDiv = document.getElementById('auth-test');
+                const { data, error } = await supabase.auth.getSession();
+                if (error) {
+                    authDiv.innerHTML = `<span class="error">✗ Auth error: ${error.message}</span>`;
+                    return;
+                } else if (!data.session) {
+                    authDiv.innerHTML = '<span class="error">✗ No active session - user not logged in</span>';
+                    return;
+                } else {
+                    authDiv.innerHTML = `<span class="success">✓ User authenticated: ${data.session.user.email}</span>`;
+                }
+            } catch (err) {
+                document.getElementById('auth-test').innerHTML = `<span class="error">✗ Auth test error: ${err.message}</span>`;
+                return;
+            }
+            
+            // Test 3: Profiles Table
+            try {
+                const profilesDiv = document.getElementById('profiles-test');
+                const { data, error } = await supabase.from('profiles').select('*').limit(1);
+                if (error) {
+                    profilesDiv.innerHTML = `<span class="error">✗ Profiles table error: ${error.message}</span>`;
+                } else {
+                    profilesDiv.innerHTML = `<span class="success">✓ Profiles table accessible. Found ${data ? data.length : 0} records in test query</span>`;
+                }
+            } catch (err) {
+                document.getElementById('profiles-test').innerHTML = `<span class="error">✗ Profiles test error: ${err.message}</span>`;
+            }
+            
+            // Test 4: Admin Check
+            try {
+                const adminDiv = document.getElementById('admin-test');
+                const { data: session } = await supabase.auth.getSession();
+                if (session.session) {
+                    const { data, error } = await supabase
+                        .from('profiles')
+                        .select('role')
+                        .eq('id', session.session.user.id)
+                        .single();
+                    
+                    if (error) {
+                        adminDiv.innerHTML = `<span class="error">✗ Admin check error: ${error.message}</span>`;
+                    } else if (!data) {
+                        adminDiv.innerHTML = '<span class="error">✗ User profile not found in profiles table</span>';
+                    } else if (data.role !== 'admin') {
+                        adminDiv.innerHTML = `<span class="error">✗ User role is '${data.role}', not 'admin'</span>`;
+                    } else {
+                        adminDiv.innerHTML = '<span class="success">✓ User has admin role</span>';
+                    }
+                }
+            } catch (err) {
+                document.getElementById('admin-test').innerHTML = `<span class="error">✗ Admin test error: ${err.message}</span>`;
+            }
+            
+            // Test 5: User Data Fetch
+            try {
+                const fetchDiv = document.getElementById('fetch-test');
+                const { data: users, error: usersError } = await supabase
+                    .from('profiles')
+                    .select('first_name, last_name, email, role, suspended');
+                
+                if (usersError) {
+                    fetchDiv.innerHTML = `<span class="error">✗ User fetch error: ${usersError.message}</span>`;
+                } else {
+                    fetchDiv.innerHTML = `<span class="success">✓ Successfully fetched ${users ? users.length : 0} users</span>`;
+                    if (users && users.length > 0) {
+                        fetchDiv.innerHTML += `<br><small>Sample user: ${JSON.stringify(users[0], null, 2)}</small>`;
+                    }
+                }
+            } catch (err) {
+                document.getElementById('fetch-test').innerHTML = `<span class="error">✗ Fetch test error: ${err.message}</span>`;
+            }
+        }
+        
+        // Run tests when page loads
+        runTests();
+    </script>
+</body>
+</html>

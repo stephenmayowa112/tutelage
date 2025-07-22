@@ -48,20 +48,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const { data: users, error: usersError } = await supabase
             .from('profiles')
-            .select('first_name, last_name, email, role');
+            .select('first_name, last_name, email, role, suspended');
 
         loadingState.classList.add('hidden');
 
         if (usersError) {
             console.error('Error fetching users:', usersError);
-            // Show more detailed error information
-            errorState.innerHTML = `
-                <div class="text-center py-10">
-                    <p class="text-lg text-red-600 mb-2">Failed to load user data</p>
-                    <p class="text-sm text-gray-600">Error: ${usersError.message || 'Unknown error'}</p>
-                    <p class="text-xs text-gray-500 mt-2">Check console for more details</p>
-                </div>
-            `;
             errorState.classList.remove('hidden');
         } else {
             adminContent.classList.remove('hidden');
@@ -69,12 +61,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 userList.innerHTML = '<div class="text-center py-10"><p class="text-gray-500">No users found.</p></div>';
             } else {
                 const userHtml = users.map((user, idx) => `
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 px-4 border-b items-center" data-user-idx="${idx}">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 py-4 px-4 border-b items-center" data-user-idx="${idx}">
                         <div class="md:hidden">
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="font-semibold text-gray-800 mb-2">${user.first_name || ''} ${user.last_name || ''}</div>
                                 <div class="text-sm text-gray-600 mb-1"><span class="font-medium">Email:</span> ${user.email || ''}</div>
                                 <div class="text-sm text-gray-600 mb-2"><span class="font-medium">Role:</span> ${user.role || 'N/A'}</div>
+                                <div class="mb-3">
+                                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${user.suspended ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
+                                        ${user.suspended ? 'Suspended' : 'Active'}
+                                    </span>
+                                </div>
                                 <div class="space-y-2">
                                     <select class="role-select w-full bg-gray-100 border rounded px-2 py-1 text-sm" data-user-idx="${idx}">
                                         <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
@@ -86,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                         <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
                                         <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
                                         <button class="reset-btn bg-yellow-500 hover:bg-yellow-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Reset</button>
+                                        <button class="suspend-btn bg-gray-500 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">${user.suspended ? 'Activate' : 'Suspend'}</button>
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +102,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <button class="edit-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Edit</button>
                             <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Delete</button>
                             <button class="reset-btn bg-yellow-500 hover:bg-yellow-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">Reset</button>
+                            <button class="suspend-btn bg-gray-500 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-user-idx="${idx}">${user.suspended ? 'Activate' : 'Suspend'}</button>
+                        </div>
+                        <div class="hidden md:block">
+                            <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${user.suspended ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
+                                ${user.suspended ? 'Suspended' : 'Active'}
+                            </span>
                         </div>
                     </div>
                 `).join('');
@@ -164,19 +168,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                             }
                         });
                     });
+
+                    // Suspend/activate buttons (both mobile and desktop)
+                    const suspendBtns = userList.querySelectorAll(`.suspend-btn[data-user-idx='${idx}']`);
+                    suspendBtns.forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const newStatus = !user.suspended;
+                            await supabase.from('profiles').update({ suspended: newStatus }).eq('email', user.email);
+                            logAdminAction(supabase, session.user.id, newStatus ? 'Suspend User' : 'Activate User', `${newStatus ? 'Suspended' : 'Activated'} user ${user.email}`);
+                            location.reload();
+                        });
+                    });
                 });
             }
         }
     } catch (err) {
-        console.error('Catch block error:', err);
         loadingState.classList.add('hidden');
-        errorState.innerHTML = `
-            <div class="text-center py-10">
-                <p class="text-lg text-red-600 mb-2">Failed to load user data</p>
-                <p class="text-sm text-gray-600">Catch Error: ${err.message || 'Unknown error'}</p>
-                <p class="text-xs text-gray-500 mt-2">Check console for more details</p>
-            </div>
-        `;
         errorState.classList.remove('hidden');
     }
 
