@@ -2,20 +2,33 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/js/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/images/*",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
+      }
     }
   ],
-  "rewrites": [
-    { "source": "/js/(.*)", "destination": "/js/$1" },
-    { "source": "/(.*)", "destination": "/$1" }
+  "routes": [
+    {
+      "src": "/css/style.css",
+      "dest": "/css/style.css"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/(.*\.html)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
   ]
 }
