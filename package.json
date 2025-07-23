@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx postcss ./css/input.css -o ./css/style.css",
+    "build:css": "cross-env NODE_ENV=production npx postcss ./css/input.css -o ./css/style.css",
+    "build:css:dev": "npx postcss ./css/input.css -o ./css/style.css",
     "build": "npm run build:css",
     "vercel-build": "npm run build:css"
   },
@@ -40,6 +41,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
+    "cssnano": "^7.1.0",
     "postcss": "^8.5.6"
   }
 }
