@@ -1,23 +1,12 @@
-[09:27:12.835] Running build in Washington, D.C., USA (East) – iad1
-[09:27:12.835] Build machine configuration: 2 cores, 8 GB
-[09:27:12.847] Cloning github.com/stephenmayowa112/tutelage (Branch: main, Commit: fa61106)
-[09:27:15.624] Cloning completed: 2.777s
-[09:27:16.149] Restored build cache from previous deployment (2PiSBEuFG5Kc88dz3ADswbvYcF5j)
-[09:27:17.722] Running "vercel build"
-[09:27:18.344] Vercel CLI 44.5.0
-[09:27:18.896] Installing dependencies...
-[09:27:21.131] 
-[09:27:21.132] added 65 packages in 2s
-[09:27:21.132] 
-[09:27:21.132] 54 packages are looking for funding
-[09:27:21.132]   run `npm fund` for details
-[09:27:21.164] Running "npm run vercel-build"
-[09:27:21.269] 
-[09:27:21.270] > tutulage@1.0.0 vercel-build
-[09:27:21.270] > echo "Using pre-built CSS"
-[09:27:21.270] 
-[09:27:21.274] Using pre-built CSS
-[09:27:21.288] Error: No Output Directory named "public" found after the Build completed. You can configure the Output Directory in your Project Settings.
-[09:27:21.289] Learn More: https://vercel.link/missing-public-directory
-[09:27:21.477] 
-[09:27:23.964] Exiting build container
+[11:51:46.194] Running build in Washington, D.C., USA (East) – iad1
+[11:51:46.194] Build machine configuration: 2 cores, 8 GB
+[11:51:46.208] Cloning github.com/stephenmayowa112/tutelage (Branch: main, Commit: 917124a)
+[11:51:48.985] Cloning completed: 2.776s
+[11:51:49.522] Skipping build cache since Node.js version changed from "22.x" to ""
+[11:51:49.772] Running "vercel build"
+[11:51:50.895] Vercel CLI 44.5.0
+[11:51:51.191] Error: Can't parse json file /vercel/path0/package.json: Expected double-quoted property name in JSON at position 376 while parsing '{
+[11:51:51.193]   "name": "tutulage",
+[11:51:51.194]   "version": "1.'
+[11:51:51.801] 
+[11:51:54.307] Exiting build container
