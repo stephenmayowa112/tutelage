@@ -159,6 +159,24 @@
             </div>
         </div>
     </footer>
+    <script>
+      // Universal fallback: show all body children except navbar and footer
+      window.addEventListener('error', function(e) {
+        console.error('JS Error:', e.message, e.filename, e.lineno);
+        Array.from(document.body.children).forEach(function(child) {
+          if (!child.matches('header, footer')) {
+            child.style.display = '';
+          }
+        });
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+        Array.from(document.body.children).forEach(function(child) {
+          if (!child.matches('header, footer')) {
+            child.style.display = '';
+          }
+        });
+      });
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="js/supabase-init.js"></script>
