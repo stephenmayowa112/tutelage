@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "cross-env NODE_ENV=production npx postcss ./css/input.css -o ./css/style.css",
-    "build:css:dev": "npx postcss ./css/input.css -o ./css/style.css",
+    "build:css": "postcss ./css/input.css -o ./css/style.css",
+    "build:css:prod": "NODE_ENV=production postcss ./css/input.css -o ./css/style.css",
     "build": "npm run build:css",
     "vercel-build": "npm run build:css"
   },
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/stephenmayowa112/tutelage#readme",
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
     "browserslist": "^4.25.1",
     "caniuse-lite": "^1.0.30001727",
     "electron-to-chromium": "^1.5.187",
@@ -33,16 +32,17 @@
     "node-releases": "^2.0.19",
     "normalize-range": "^0.1.2",
     "picocolors": "^1.1.1",
-    "postcss-cli": "^11.0.1",
     "postcss-value-parser": "^4.2.0",
     "source-map-js": "^1.2.1",
-    "tailwindcss": "^3.4.17",
     "update-browserslist-db": "^1.1.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
     "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
     "cssnano": "^7.1.0",
-    "postcss": "^8.5.6"
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.17"
   }
 }
