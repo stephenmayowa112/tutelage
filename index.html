@@ -235,6 +235,19 @@
             </div>
         </div>
     </footer>
+    <script>
+      // Log JS errors for debugging
+      window.addEventListener('error', function(e) {
+        console.error('JS Error:', e.message, e.filename, e.lineno);
+        var main = document.querySelector('main');
+        if (main) main.style.display = '';
+      });
+      // Fallback: always show main content if JS fails
+      document.addEventListener('DOMContentLoaded', function() {
+        var main = document.querySelector('main');
+        if (main) main.style.display = '';
+      });
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="js/supabase-init.js"></script>
