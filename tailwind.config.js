@@ -8,12 +8,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-  // Enable purging in production
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './*.html',
-      './js/**/*.js',
-    ],
-  },
 }

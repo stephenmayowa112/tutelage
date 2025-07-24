@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss ./css/input.css -o ./css/style.css",
-    "build:css:prod": "NODE_ENV=production postcss ./css/input.css -o ./css/style.css",
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/style.css --minify",
+    "build:css:dev": "tailwindcss -i ./css/input.css -o ./css/style.css",
     "build": "npm run build:css",
     "vercel-build": "npm run build:css"
   },
