@@ -11,6 +11,31 @@ if (btn && menu) {
 
 AOS.init();
 
+// Robust homepage content rendering
+if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.match(/\\index.html$/)) {
+    document.addEventListener('DOMContentLoaded', function () {
+        try {
+            if (typeof AOS !== 'undefined' && AOS.init) {
+                AOS.init();
+            }
+        } catch (e) {
+            console.error('AOS failed to initialize:', e);
+        }
+        // Example: Show homepage sections if hidden by error
+        var mainContent = document.querySelector('main');
+        if (mainContent) {
+            mainContent.style.display = '';
+        }
+        // If you have specific sections, ensure they are visible
+        var sections = document.querySelectorAll('.homepage-section');
+        if (sections.length) {
+            sections.forEach(function(section) {
+                section.style.display = '';
+            });
+        }
+    });
+}
+
 // Handle password recovery links
 const handleRecovery = async () => {
     const params = new URLSearchParams(window.location.hash.substring(1));
