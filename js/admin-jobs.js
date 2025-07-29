@@ -71,7 +71,7 @@ async function fetchJobs() {
     data.forEach(job => {
         jobList.querySelector(`.approve-btn[data-job-id='${job.id}']`).addEventListener('click', async () => {
             await supabase.from('jobs').update({ approved: !job.approved }).eq('id', job.id);
-            logAdminAction(supabase, supabase.auth.user().id, job.approved ? 'Unapprove Job' : 'Approve Job', `${job.approved ? 'Unapproved' : 'Approved'} job ${job.title}`);
+            logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, job.approved ? 'Unapprove Job' : 'Approve Job', `${job.approved ? 'Unapproved' : 'Approved'} job ${job.title}`);
             fetchJobs();
         });
         jobList.querySelector(`.edit-btn[data-job-id='${job.id}']`).addEventListener('click', async () => {
@@ -81,14 +81,14 @@ async function fetchJobs() {
             const newDescription = prompt('Edit Description:', job.description);
             if (newTitle && newLocation && newContract && newDescription) {
                 await supabase.from('jobs').update({ title: newTitle, location: newLocation, contract_type: newContract, description: newDescription }).eq('id', job.id);
-                logAdminAction(supabase, supabase.auth.user().id, 'Edit Job', `Edited job ${job.title}`);
+                logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Edit Job', `Edited job ${job.title}`);
                 fetchJobs();
             }
         });
         jobList.querySelector(`.delete-btn[data-job-id='${job.id}']`).addEventListener('click', async () => {
             if (confirm(`Are you sure you want to delete job ${job.title}?`)) {
                 await supabase.from('jobs').delete().eq('id', job.id);
-                logAdminAction(supabase, supabase.auth.user().id, 'Delete Job', `Deleted job ${job.title}`);
+                logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Delete Job', `Deleted job ${job.title}`);
                 fetchJobs();
             }
         });
@@ -103,8 +103,11 @@ jobForm.addEventListener('submit', async (e) => {
     const description = document.getElementById('job-description').value;
     const salary = document.getElementById('job-salary').value;
     
+    const { data: { user } } = await supabase.auth.getUser();
+    
     try {
         await supabase.from('jobs').insert({ 
+            user_id: user.id,
             title, 
             location, 
             contract_type, 
@@ -112,13 +115,13 @@ jobForm.addEventListener('submit', async (e) => {
             salary_range: salary,
             approved: false 
         });
-        logAdminAction(supabase, supabase.auth.user().id, 'Create Job', `Created job ${title}`);
+        logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Create Job', `Created job ${title}`);
         fetchJobs();
         jobForm.reset();
         createJobForm.classList.add('hidden');
     } catch (error) {
-        console.error('Error creating job:', error);
-        alert('Failed to create job. Please try again.');
+        console.error('Error creating job:', error.message);
+        alert(`Failed to create job: ${error.message}`);
     }
 });
 

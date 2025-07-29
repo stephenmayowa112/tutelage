@@ -23,15 +23,17 @@ schoolForm.addEventListener('submit', async (e) => {
     const address = document.getElementById('school-address').value;
     const contact_email = document.getElementById('school-email').value;
     
+    const { data: { user } } = await supabase.auth.getUser();
+
     try {
-        await supabase.from('schools').insert({ school_name, address, contact_email });
-        logAdminAction(supabase, supabase.auth.user().id, 'Create School', `Created school ${school_name}`);
+        await supabase.from('schools').insert({ user_id: user.id, school_name, address, contact_email });
+        logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Create School', `Created school ${school_name}`);
         schoolForm.reset();
         createSchoolForm.classList.add('hidden');
         fetchSchools(); // Refresh the list without page reload
     } catch (error) {
-        console.error('Error creating school:', error);
-        alert('Failed to create school. Please try again.');
+        console.error('Error creating school:', error.message);
+        alert(`Failed to create school: ${error.message}`);
     }
 });
 
@@ -41,15 +43,17 @@ tutorForm.addEventListener('submit', async (e) => {
     const subjects = document.getElementById('tutor-subjects').value.split(',').map(s => s.trim());
     const experience_years = parseInt(document.getElementById('tutor-experience').value);
     
+    const { data: { user } } = await supabase.auth.getUser();
+
     try {
-        await supabase.from('tutors').insert({ bio, subjects, experience_years });
-        logAdminAction(supabase, supabase.auth.user().id, 'Create Tutor', `Created tutor with bio: ${bio}`);
+        await supabase.from('tutors').insert({ user_id: user.id, bio, subjects, experience_years });
+        logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Create Tutor', `Created tutor with bio: ${bio}`);
         tutorForm.reset();
         createTutorForm.classList.add('hidden');
         fetchTutors(); // Refresh the list without page reload
     } catch (error) {
-        console.error('Error creating tutor:', error);
-        alert('Failed to create tutor. Please try again.');
+        console.error('Error creating tutor:', error.message);
+        alert(`Failed to create tutor: ${error.message}`);
     }
 });
 
@@ -104,7 +108,7 @@ async function fetchSchools() {
                 const newEmail = prompt('Edit Contact Email:', school.contact_email || '');
                 if (newName && newAddress && newEmail) {
                     await supabase.from('schools').update({ school_name: newName, address: newAddress, contact_email: newEmail }).eq('id', school.id);
-                    logAdminAction(supabase, supabase.auth.user().id, 'Edit School', `Edited school ${school.school_name}`);
+                    logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Edit School', `Edited school ${school.school_name}`);
                     fetchSchools();
                 }
             });
@@ -114,7 +118,7 @@ async function fetchSchools() {
             btn.addEventListener('click', async () => {
                 if (confirm(`Are you sure you want to delete school ${school.school_name}?`)) {
                     await supabase.from('schools').delete().eq('id', school.id);
-                    logAdminAction(supabase, supabase.auth.user().id, 'Delete School', `Deleted school ${school.school_name}`);
+                    logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Delete School', `Deleted school ${school.school_name}`);
                     fetchSchools();
                 }
             });
@@ -175,7 +179,7 @@ async function fetchTutors() {
                 const newExp = prompt('Edit Experience Years:', tutor.experience_years || '');
                 if (newBio && newSubjects && newExp) {
                     await supabase.from('tutors').update({ bio: newBio, subjects: newSubjects.split(','), experience_years: parseInt(newExp) }).eq('id', tutor.id);
-                    logAdminAction(supabase, supabase.auth.user().id, 'Edit Tutor', `Edited tutor ${tutor.id}`);
+                    logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Edit Tutor', `Edited tutor ${tutor.id}`);
                     fetchTutors();
                 }
             });
@@ -185,7 +189,7 @@ async function fetchTutors() {
             btn.addEventListener('click', async () => {
                 if (confirm(`Are you sure you want to delete tutor ${tutor.id}?`)) {
                     await supabase.from('tutors').delete().eq('id', tutor.id);
-                    logAdminAction(supabase, supabase.auth.user().id, 'Delete Tutor', `Deleted tutor ${tutor.id}`);
+                    logAdminAction(supabase, (await supabase.auth.getUser()).data.user.id, 'Delete Tutor', `Deleted tutor ${tutor.id}`);
                     fetchTutors();
                 }
             });
