@@ -13,8 +13,7 @@ createJobBtn.addEventListener('click', () => {
 async function fetchJobs() {
     const { data, error } = await supabase
         .from('jobs')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .select('*');
 
     if (error) {
         console.error('Error fetching jobs:', error.message);
