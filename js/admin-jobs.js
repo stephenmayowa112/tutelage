@@ -17,7 +17,8 @@ async function fetchJobs() {
         .order('created_at', { ascending: false });
 
     if (error) {
-        jobList.innerHTML = '<div class="text-center py-10"><p class="text-red-600">Failed to load jobs.</p></div>';
+        console.error('Error fetching jobs:', error.message);
+        jobList.innerHTML = `<div class="text-center py-10"><p class="text-red-600">Failed to load jobs: ${error.message}</p></div>`;
         return;
     }
 

@@ -64,7 +64,8 @@ async function fetchSchools() {
         .order('school_name', { ascending: true });
 
     if (error) {
-        schoolList.innerHTML = '<div class="text-center py-10"><p class="text-red-600">Failed to load schools.</p></div>';
+        console.error('Error fetching schools:', error.message);
+        schoolList.innerHTML = `<div class="text-center py-10"><p class="text-red-600">Failed to load schools: ${error.message}</p></div>`;
         return;
     }
 
@@ -133,7 +134,8 @@ async function fetchTutors() {
         .order('id', { ascending: true });
 
     if (error) {
-        tutorList.innerHTML = '<div class="text-center py-10"><p class="text-red-600">Failed to load tutors.</p></div>';
+        console.error('Error fetching tutors:', error.message);
+        tutorList.innerHTML = `<div class="text-center py-10"><p class="text-red-600">Failed to load tutors: ${error.message}</p></div>`;
         return;
     }
 
