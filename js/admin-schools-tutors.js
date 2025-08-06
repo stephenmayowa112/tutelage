@@ -199,5 +199,33 @@ async function fetchTutors() {
     });
 }
 
-fetchSchools();
-fetchTutors();
+'''async function checkUserRole() {
+    const { data: { session }, error } = await supabase.auth.getSession();
+    if (error || !session) {
+        document.body.innerHTML = '<div class="text-center py-20"><h1 class="text-2xl font-bold">Access Denied</h1><p>You must be logged in to view this page.</p></div>';
+        return null;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', session.user.id)
+        .single();
+
+    if (profileError || !profile || profile.role !== 'admin') {
+        document.body.innerHTML = '<div class="text-center py-20"><h1 class="text-2xl font-bold">Access Denied</h1><p>You do not have permission to view this page.</p></div>';
+        return null;
+    }
+
+    return session.user;
+}
+
+async function init() {
+    const user = await checkUserRole();
+    if (user) {
+        fetchSchools();
+        fetchTutors();
+    }
+}
+
+init();'''
